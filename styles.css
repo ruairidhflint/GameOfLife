@@ -1,10 +1,11 @@
-/* body {
+body {
   overflow: hidden;
-} */
+}
 
 #root {
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   border-width: 1px 0 0 1px;
+  background-color: #f9f9f9;
 }
 
 .row {
@@ -15,10 +16,28 @@
 .cell {
   width: 12px;
   height: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   border-width: 0 1px 1px 0;
 }
 
 .alive {
-  background-color: #ccc;
+  background-color: #bbb;
+}
+
+.bottom-bar {
+  width: 100%;
+  min-height: 40px;
+  background-color: #fff;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-right: 1rem;
+  margin-left: 1rem;
 }

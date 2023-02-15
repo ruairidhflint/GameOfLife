@@ -1,5 +1,11 @@
 const grid = document.querySelector("#root");
 const startButton = document.querySelector("#start");
+const resetButton = document.querySelector("#reset");
+const countDisplay = document.querySelector("#count");
+
+let activeGame = false;
+let count = 0;
+
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -33,7 +39,9 @@ const printGrid = () => {
       if (gameboard[i][j]) {
         cell.classList.add("alive");
       }
-      cell.addEventListener("click", () => {
+      cell.addEventListener("mousedown", () => {
+        if (activeGame) return;
+
         const [x, y] = cell.id.split("-");
         if (cell.classList.contains("alive")) {
           cell.classList.remove("alive");
@@ -82,9 +90,15 @@ const applyRules = (neighbours, cell) => {
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const playTheGameOfLife = async () => {
-  const iterations = 100;
-  for (let it = 0; it < iterations; it++) {
-    console.log("fired");
+  if (activeGame) {
+    activeGame = false;
+    startButton.value = "Start";
+    return;
+  }
+  activeGame = true;
+  startButton.textContent = "Pause";
+
+  for (let it = 0; it > -1; it++) {
     const dupeboard = [...gameboard.map((a) => [...a])];
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < cols; j++) {
@@ -95,14 +109,22 @@ const playTheGameOfLife = async () => {
     }
     gameboard = dupeboard;
     printGrid();
-    await delay(500);
+    ++count;
+    countDisplay.textContent = count;
+    await delay(300);
   }
 };
 
-startButton.addEventListener("click", playTheGameOfLife);
+const reset = () => {
+  activeGame = false;
+  count = 0;
+  countDisplay.textContent = "0";
+  createGameMatrix();
+  printGrid();
+};
 
-createGameMatrix();
-printGrid();
+startButton.addEventListener("click", playTheGameOfLife);
+resetButton.addEventListener("click", reset);
 
 createGameMatrix();
 printGrid();
