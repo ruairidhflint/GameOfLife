@@ -1,0 +1,30 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.root {
+  width: 800px;
+  height: 800px;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+}
+
+.row {
+  height: 2%;
+  display: flex;
+}
+
+.cell {
+  width: 2%;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-width: 0 1px 1px 0;
+}
+
+.alive {
+  background-color: #ccc;
+}
