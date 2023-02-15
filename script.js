@@ -1,8 +1,11 @@
-const root = document.querySelector(".root");
+const grid = document.querySelector("#root");
 const startButton = document.querySelector("#start");
+const width = window.innerWidth;
+const height = window.innerHeight;
 
-const rows = 50;
-const cols = 50;
+const rows = Math.ceil(height / 12);
+const cols = Math.ceil(width / 12);
+
 let gameboard = [];
 
 const createGameMatrix = () => {
@@ -14,6 +17,9 @@ const createGameMatrix = () => {
     gameboard.push(row);
   }
 };
+
+grid.style.minHeight = `${height}px`;
+grid.style.minWidth = `${width}px`;
 
 const printGrid = () => {
   root.innerHTML = "";
@@ -94,6 +100,9 @@ const playTheGameOfLife = async () => {
 };
 
 startButton.addEventListener("click", playTheGameOfLife);
+
+createGameMatrix();
+printGrid();
 
 createGameMatrix();
 printGrid();
