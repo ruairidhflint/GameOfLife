@@ -1,0 +1,15 @@
+{
+  "name": "gameoflife",
+  "version": "1.0.0",
+  "description": "A simple browser rendering of Conway's Game of Life",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "author": "Rory flint",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
