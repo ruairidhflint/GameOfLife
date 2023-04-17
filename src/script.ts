@@ -19,6 +19,7 @@ const cols = Math.ceil(width / 12);
 
 // Using rows and cols, push 0s into 2D array to create gameboard state
 const createGameMatrix = () => {
+  gameboard = [];
   for (let i = 0; i < rows; i++) {
     const row: number[] = [];
     for (let j = 0; j < cols; j++) {
@@ -105,9 +106,11 @@ const playTheGameOfLife = async () => {
   if (activeGame) {
     activeGame = false;
     startButton.textContent = "Start";
+    resetButton.disabled = false;
     return;
   }
   // else start the game
+  resetButton.disabled = true;
   activeGame = true;
   startButton.textContent = "Pause";
 

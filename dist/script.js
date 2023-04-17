@@ -25,6 +25,7 @@ const rows = Math.ceil(height / 12);
 const cols = Math.ceil(width / 12);
 // Using rows and cols, push 0s into 2D array to create gameboard state
 const createGameMatrix = () => {
+    gameboard = [];
     for (let i = 0; i < rows; i++) {
         const row = [];
         for (let j = 0; j < cols; j++) {
@@ -101,9 +102,11 @@ const playTheGameOfLife = () => __awaiter(void 0, void 0, void 0, function* () {
     if (activeGame) {
         activeGame = false;
         startButton.textContent = "Start";
+        resetButton.disabled = false;
         return;
     }
     // else start the game
+    resetButton.disabled = true;
     activeGame = true;
     startButton.textContent = "Pause";
     // whilst game is active, create a duplicate gameboard,
