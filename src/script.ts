@@ -33,6 +33,7 @@ const createGameMatrix = () => {
 grid.style.minHeight = `${height}px`;
 grid.style.minWidth = `${width}px`;
 
+// function to render grid to DOM
 const printGrid = () => {
   grid.innerHTML = "";
   for (let i = 0; i < rows; i++) {
@@ -65,6 +66,7 @@ const printGrid = () => {
   }
 };
 
+// functiont hat will get all values for neighbouring cells of any cell provided
 function getNeighbours(x: number, y: number) {
   const maxRows = gameboard.length;
   const maxCols = gameboard[0].length;
@@ -83,6 +85,7 @@ function getNeighbours(x: number, y: number) {
   return neighbors;
 }
 
+// taking in the neighbouring cell values and the cell, return if the cell should live or die based on Conway's rules
 const applyRules = (neighbours: number[], cell: number) => {
   const livingNeighbours = neighbours.filter(Boolean).length;
   if (cell && (livingNeighbours === 2 || livingNeighbours === 3)) {
