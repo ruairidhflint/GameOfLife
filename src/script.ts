@@ -85,7 +85,7 @@ function getNeighbours(x: number, y: number) {
   return neighbors;
 }
 
-// taking in the neighbouring cell values and the cell, return if the cell should live or die based on Conway's rules
+// taking in the neighbouring cell values and the cell, return if the cell should live or die based on Conway's rulesr
 const applyRules = (neighbours: number[], cell: number) => {
   const livingNeighbours = neighbours.filter(Boolean).length;
   if (cell && (livingNeighbours === 2 || livingNeighbours === 3)) {
@@ -102,6 +102,16 @@ const applyRules = (neighbours: number[], cell: number) => {
 // Set delay between each iteration
 const delay = (ms: number): Promise<void> =>
   new Promise((res) => setTimeout(res, ms));
+
+const checkGameHasStopped = (
+  currentBoard: number[][],
+  nextBoard: number[][]
+) => {
+  const flattenCurrent = currentBoard.flat();
+  const flattenNext = nextBoard.flat();
+
+  return flattenCurrent.every((value, index) => value === flattenNext[index]);
+};
 
 // Main function to play Game of Life
 const playTheGameOfLife = async () => {
@@ -129,6 +139,15 @@ const playTheGameOfLife = async () => {
         dupeboard[i][j] = applyRules(neighbours, cell);
       }
     }
+
+    if (checkGameHasStopped(gameboard, dupeboard)) {
+      // should pause the game
+      activeGame = false;
+      startButton.disabled = true;
+      startButton.textContent = "Start";
+      resetButton.disabled = false;
+      return;
+    }
     gameboard = dupeboard;
     // print updated gameboard
     printGrid();
@@ -147,6 +166,7 @@ const reset = () => {
   count = 0;
   countDisplay.textContent = "0";
   startButton.textContent = "Start";
+  startButton.disabled = false;
   createGameMatrix();
   printGrid();
 };

@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 // DOM elements
 const grid = document.querySelector("#root");
 const startButton = document.querySelector("#start");
@@ -86,7 +77,7 @@ function getNeighbours(x, y) {
     }
     return neighbors;
 }
-// taking in the neighbouring cell values and the cell, return if the cell should live or die based on Conway's rules
+// taking in the neighbouring cell values and the cell, return if the cell should live or die based on Conway's rulesr
 const applyRules = (neighbours, cell) => {
     const livingNeighbours = neighbours.filter(Boolean).length;
     if (cell && (livingNeighbours === 2 || livingNeighbours === 3)) {
@@ -99,8 +90,13 @@ const applyRules = (neighbours, cell) => {
 };
 // Set delay between each iteration
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+const checkGameHasStopped = (currentBoard, nextBoard) => {
+    const flattenCurrent = currentBoard.flat();
+    const flattenNext = nextBoard.flat();
+    return flattenCurrent.every((value, index) => value === flattenNext[index]);
+};
 // Main function to play Game of Life
-const playTheGameOfLife = () => __awaiter(void 0, void 0, void 0, function* () {
+const playTheGameOfLife = async () => {
     // if the game is already active, pause it
     if (activeGame) {
         activeGame = false;
@@ -124,6 +120,14 @@ const playTheGameOfLife = () => __awaiter(void 0, void 0, void 0, function* () {
                 dupeboard[i][j] = applyRules(neighbours, cell);
             }
         }
+        if (checkGameHasStopped(gameboard, dupeboard)) {
+            // should pause the game
+            activeGame = false;
+            startButton.disabled = true;
+            startButton.textContent = "Start";
+            resetButton.disabled = false;
+            return;
+        }
         gameboard = dupeboard;
         // print updated gameboard
         printGrid();
@@ -132,15 +136,16 @@ const playTheGameOfLife = () => __awaiter(void 0, void 0, void 0, function* () {
         // render count
         countDisplay.textContent = String(count);
         // wait n ms for next cycle
-        yield delay(300);
+        await delay(300);
     }
-});
+};
 // Reset all global variables
 const reset = () => {
     activeGame = false;
     count = 0;
     countDisplay.textContent = "0";
     startButton.textContent = "Start";
+    startButton.disabled = false;
     createGameMatrix();
     printGrid();
 };
