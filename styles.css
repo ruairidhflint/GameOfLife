@@ -193,3 +193,26 @@ button:disabled {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0);
   opacity: 0.5;
 }
+
+#modal-window {
+  height: 101vh;
+  width: 101vw;
+  overflow: hidden;
+  background-color: rgba(51, 65, 85, 0.15);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 600px;
+  height: 400px;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
