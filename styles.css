@@ -195,10 +195,9 @@ button:disabled {
 }
 
 #modal-window {
-  height: 101vh;
-  width: 101vw;
-  overflow: hidden;
-  background-color: rgba(51, 65, 85, 0.15);
+  height: 100%;
+  width: 100%;
+  background-color: rgba(51, 65, 85, 0.18);
   z-index: 100;
   position: fixed;
   top: 0;
@@ -209,10 +208,48 @@ button:disabled {
 }
 
 .modal {
-  width: 600px;
-  height: 400px;
-  max-width: 90%;
-  max-height: 90%;
+  width: 90%;
+  max-width: 600px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.modal h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.modal p {
+  margin-bottom: 1rem;
+  line-height: 1.3rem;
+}
+
+.modal .button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  #modal-window {
+    background-color: rgba(51, 65, 85, 0.5);
+  }
+  .modal {
+    padding: 15px 10px;
+  }
+  .modal h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.4rem;
+  }
+  .modal p {
+    padding: 0 20px;
+    margin-bottom: 1rem;
+    line-height: 1.2rem;
+  }
 }

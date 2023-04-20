@@ -2,7 +2,9 @@
 const grid = document.querySelector<HTMLDivElement>("#root")!;
 const startButton = document.querySelector<HTMLButtonElement>("#start")!;
 const resetButton = document.querySelector<HTMLButtonElement>("#reset")!;
+const playButton = document.querySelector<HTMLButtonElement>("#play")!;
 const countDisplay = document.querySelector<HTMLDivElement>("#count")!;
+const modal = document.querySelector<HTMLDivElement>("#modal-window")!;
 
 // Global state
 let activeGame = false;
@@ -115,6 +117,10 @@ const checkGameHasStopped = (
 
 // Main function to play Game of Life
 const playTheGameOfLife = async () => {
+  const isNotBlankBoard = gameboard.flat().some(Boolean);
+  if (!isNotBlankBoard) {
+    return;
+  }
   // if the game is already active, pause it
   if (activeGame) {
     activeGame = false;
@@ -171,9 +177,15 @@ const reset = () => {
   printGrid();
 };
 
+// Close initial modal
+const closeModal = () => {
+  modal.style.display = "none";
+};
+
 // Assign actions to buttons
 startButton.addEventListener("click", playTheGameOfLife);
-resetButton.addEventListener("click", reset);
+startButton.addEventListener("click", playTheGameOfLife);
+playButton.addEventListener("click", closeModal);
 
 // Initial render
 createGameMatrix();

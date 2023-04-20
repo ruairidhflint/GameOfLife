@@ -1,5 +1,3 @@
 ## TODO
 
-- Add help modal on initial page load
-- Add ability to toggle help modal from bottom bar
 - Made ability to drag mouse to select multiple cells quickly

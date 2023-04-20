@@ -64,7 +64,28 @@
       <span class="text" style="margin-left: 7px"> MrRoryFlint </span>
     </a>
     <div id="modal-window">
-      <div class="modal"></div>
+      <div class="modal">
+        <h1>Conway's Game of Life</h1>
+        <p>
+          Conway's Game of Life is a cellular automaton created by mathematician
+          John Conway in 1970. It consists of a grid of cells, each of which can
+          be either alive or dead. The rules for the game are simple: a dead
+          cell with exactly three live neighbors becomes a live cell, a live
+          cell with two or three live neighbors survives, and a live cell with
+          fewer than two or more than three live neighbors dies. These rules are
+          applied to each cell on the grid simultaneously, creating a new
+          generation of cells. The game continues indefinitely, with patterns
+          emerging and evolving over time.
+        </p>
+        <p>
+          To play, simply select a number of cells randomly or in a pattern. A
+          selected cell is alive and a blank cell is dead. Once you have made
+          your initial selection, click 'Start' and watch the game unfold. The
+          game will end if a state is received where no change is made between
+          iterations.
+        </p>
+        <div class="button-container"><button id="play">Play</button></div>
+      </div>
     </div>
   </body>
 </html>
