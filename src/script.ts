@@ -187,7 +187,7 @@ const closeModal = () => {
 
 // Assign actions to buttons
 startButton.addEventListener("click", playTheGameOfLife);
-resetButton.addEventListener("click", playTheGameOfLife);
+resetButton.addEventListener("click", reset);
 playButton.addEventListener("click", closeModal);
 
 // Initial render
