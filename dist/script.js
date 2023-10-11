@@ -30,6 +30,7 @@ const createGameMatrix = () => {
 // Set minimum height and width for grid to be rendered
 grid.style.minHeight = `${height}px`;
 grid.style.minWidth = `${width}px`;
+let mouseDown = false;
 // function to render grid to DOM
 const printGrid = () => {
     grid.innerHTML = "";
@@ -161,7 +162,7 @@ const closeModal = () => {
 };
 // Assign actions to buttons
 startButton.addEventListener("click", playTheGameOfLife);
-startButton.addEventListener("click", playTheGameOfLife);
+resetButton.addEventListener("click", playTheGameOfLife);
 playButton.addEventListener("click", closeModal);
 // Initial render
 createGameMatrix();

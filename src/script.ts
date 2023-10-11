@@ -35,6 +35,8 @@ const createGameMatrix = () => {
 grid.style.minHeight = `${height}px`;
 grid.style.minWidth = `${width}px`;
 
+let mouseDown = false;
+
 // function to render grid to DOM
 const printGrid = () => {
   grid.innerHTML = "";
@@ -48,6 +50,7 @@ const printGrid = () => {
       if (gameboard[i][j]) {
         cell.classList.add("alive");
       }
+
       cell.addEventListener("mousedown", () => {
         if (activeGame) return;
 
@@ -184,7 +187,7 @@ const closeModal = () => {
 
 // Assign actions to buttons
 startButton.addEventListener("click", playTheGameOfLife);
-startButton.addEventListener("click", playTheGameOfLife);
+resetButton.addEventListener("click", playTheGameOfLife);
 playButton.addEventListener("click", closeModal);
 
 // Initial render
